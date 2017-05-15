@@ -1,12 +1,12 @@
 # Industrial Sensor
 ### Build A Realtime Coffee Inventory Tracking
-##### A partner Blueprint for [Particle Electron](https://www.particle.io)
+#### A partner Blueprint for [Particle Electron](https://www.particle.io)
 
 **Disclaimer: The blueprints and information made available on this page are examples only and are not to be used for production purposes. Twilio disclaims any warranties and liabilities under any legal theory (including, without limitation, breach of contract, tort, and indemnification) in connection with your use of or reliance on the blueprints. Any liabilities that arise in connection with your use of these blueprints shall solely be borne by you. By accessing and downloading these blueprints, you agree to the foregoing terms.**
 
 **Problem**  As a local coffee roaster grows, it's having trouble predicting how much to roast and when they should be delivering coffee to clients. Right now they operate on a fixed weekly schedule but if they had a better view into how their clients are using their coffee, they could be much more efficient.
 
-**Solution** We'll create an easy to deploy "industrial sensor" device that is essentially a smart scale our roaster that you can give to clients. All of your client's coffee is stored on the industrial sensor and it wirelessly reports usage back to the roaster so they can see how fast coffee is being used, make better predictions about what they should roast, and deliver coffee exactly when their clients need it. Our connected scale has a maximum capacity of 80lbs.
+**Solution** We'll create an easy to deploy "bean counter" device that is essentially a smart scale our roaster that you can give to clients. All of your client's coffee is stored on the industrial sensor and it wirelessly reports usage back to the roaster so they can see how fast coffee is being used, make better predictions about what they should roast, and deliver coffee exactly when their clients need it. Our connected scale has a maximum capacity of 80lbs.
 
 **Degree of Difficulty (1-5): 4** This example requires some basic electrical knowledge and the ability to solder, but otherwise the project is appropriate for a novice.
 
