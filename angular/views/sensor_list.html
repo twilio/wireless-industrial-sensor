@@ -1,0 +1,127 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="page-header">
+      <h1 id="tables">Configuration</h1>
+    </div>
+
+    <div class="bs-component">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th><strong>Id</strong></th>
+            <th><strong>Name</strong></th>
+            <th><strong>SIM Sid</strong></th>
+            <th><strong>Token</strong></th>
+            <th><strong>Created</strong></th>
+            <th><strong>Actions</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="sensor in sensors" class="chalk-background" ng-class="{'text-success': editedSensorInfo.id === sensor.info.id}">
+            <td>{{ sensor.info.id }}</td>
+            <td>{{ sensor.info.name }}</td>
+            <td>{{ sensor.info.twilio_sim_sid }}</td>
+            <td>
+                <small ng-if="editedSensorInfo.id === sensor.info.id" class="text-warning">{{ editedSensorInfo.token }}</small>
+                <button ng-click="regenTokenForSensor(sensor.info.id)" ng-if="editedSensorInfo.id !== sensor.info.id" class="btn btn-xs btn-success">Regenerate</button>
+            </td>
+            <td>{{ sensor.info.created_at | moment }}</td>
+            <td>
+                <button ng-click="editSensor(sensor.info.id)" class="btn btn-xs btn-success">Edit</button>
+                &nbsp;
+                <button ng-click="deleteSensor(sensor.info.id)" class="btn btn-xs btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div></div><!-- /example -->
+  </div>
+</div>
+
+<button class="btn btn-primary add-sensor-show">New Industrial Sensor</button>
+
+<div class="row add-sensor chalk-background">
+  <div class="col-lg-12">
+    <form class="form-horizontal" ng-submit="addSensor()">
+      <fieldset>
+        <h2>Add Industrial Sensor</h2>
+
+        <div class="form-group">
+          <label for="id" class="col-lg-2">Id</label>
+          <div class="col-lg-12">
+            <input type="text" class="form-control" ng-model="newSensor.id" id="id" placeholder="">
+            <p>This can be any unique alphanumeric identifier.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="name" class="col-lg-2">Name</label>
+          <div class="col-lg-12">
+            <input type="text" class="form-control" ng-model="newSensor.name" id="name" placeholder="">
+            <p>Give your Industrial Sensor a descriptive name for the dashboard.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="twilio_sim_sid" class="col-lg-2">Twilio SIM Sid</label>
+          <div class="col-lg-12">
+            <input type="text" class="form-control" ng-model="newSensor.twilio_sim_sid" id="twilio_sim_sid" placeholder="">
+            <p>You can find your SIM Sid in Twilio's <a href="https://www.twilio.com/console/wireless/sims/">Console</a>.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-12">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-default add-sensor-cancel">Cancel</button>
+          </div>
+        </div>
+
+        <p class="text-warning" id="add-sensor-failed"></p>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+<div class="row edit-sensor">
+  <div class="col-lg-12">
+    <form class="form-horizontal" ng-submit="updateSensor()">
+      <fieldset>
+        <legend>Update Industrial Sensor</legend>
+
+        <div class="form-group">
+          <label for="id" class="col-lg-2">Id</label>
+          <div class="col-lg-12">
+            <input type="text" class="form-control" ng-model="editedSensorInfo.id" id="id" value="{{ editedSensorInfo.id }}" placeholder="" disabled>
+            <p>This can be any unique alphanumeric identifier.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="name" class="col-lg-2">Name</label>
+          <div class="col-lg-12">
+            <input type="text" class="form-control" ng-model="editedSensorInfo.name" id="name" value="{{ editedSensorInfo.name }}" placeholder="">
+            <p>Give your Industrial Sensor a descriptive name for the dashboard.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="twilio_sim_sid" class="col-lg-2">Twilio SIM Sid</label>
+          <div class="col-lg-12">
+            <input type="text" class="form-control" ng-model="editedSensorInfo.twilio_sim_sid" id="twilio_sim_sid" value="{{ editedSensorInfo.twilio_sim_sid }}" placeholder="">
+            <p>You can find your SIM Sid in Twilio's <a href="https://www.twilio.com/console/wireless/sims/">Console</a>.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-10">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-default edit-sensor-cancel">Cancel</button>
+          </div>
+        </div>
+
+        <p class="text-warning" id="edit-sensor-failed"></p>
+      </fieldset>
+    </form>
+  </div>
+</div>

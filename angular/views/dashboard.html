@@ -1,0 +1,20 @@
+<h1>Active Industrial Sensors</h1>
+
+<p ng-show="noSensor()">We aren't tracking any Industrial Sensors right now. Click the Add Industrial Sensor button to get started.</p>
+
+<div ng-repeat="sensor in sensors" class="jumbotron sensor sensor{{ sensor.info.id }} chalk-background">
+  <h3>
+    {{ sensor.info.name }}
+  </h3>
+
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 img-parent">
+      <div class="sensor-feed">
+
+      </div>
+    </div>
+  </div>
+  <div class="row motion_stats">
+
+  </div>
+</div>
