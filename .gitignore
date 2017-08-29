@@ -50,3 +50,4 @@ remote-monitor/node/public/imgs/camera_photos/*
 bean-counter/electron/compiled
 
 package-lock.json
+.vscode/extensions.json
