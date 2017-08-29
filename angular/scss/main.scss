@@ -90,21 +90,6 @@ h1 {
   color: $tblue;
 }
 
-.sensor-feed {
-  display: flex;
-
-  .buffer {
-    margin: 20px 0 20px 0;
-  }
-}
-.sensor-feed > div {
-  min-width: 0;
-}
-.sensor-feed > img {
-  max-width: 100%;
-  height: auto;
-}
-
 .alerts-list {
   color: $tblue;
   margin-top: 20px;

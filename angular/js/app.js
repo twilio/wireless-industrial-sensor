@@ -1,5 +1,4 @@
 'use strict';
-
 const APP_CONFIGURATION_DOCUMENT_NAME = 'app.configuration';
 const SENSOR_DATA_READINGS = 'sensorReadings';
 
@@ -11,6 +10,8 @@ module.exports = function (callbacks) {
   const $ = require ('jquery');
   const crypto = require ('crypto');
   const SyncClient = require ('twilio-sync').Client;
+  const moment = require ('moment');
+
   var syncClient;
   var token;
   var auth = 'username=twilio&pincode=928462';
@@ -84,13 +85,30 @@ module.exports = function (callbacks) {
       map.get (SENSOR_DATA_MAP_NAME (sensor.id)).then (function (item) {
         sensors[sensor.id].readingsMap = item;
         sensors[sensor.id].readings = item.value;
+        updateSeries(sensors[sensor.id], item);
         callbacks.refresh ();
       });
       map.on ('itemUpdated', function (data) {
+        console.log(data);
         sensors[sensor.id].readings = data.value;
+        updateSeries(sensors[sensor.id], data);
         callbacks.refresh ();
       });
     });
+  }
+
+  function updateSeries(sensor, data) {
+    if (!sensor.series) sensor.series = { temperature: [], humidity: [], weight: [] };
+
+    let utcTime = data.descriptor.date_updated || data.descriptor.date_created;
+    let formattedTime = moment.utc(utcTime).local().format("HH:mm");
+
+    // Set temperature series for chart
+    sensor.series.temperature.push({x: formattedTime, y: data.value.temperature});
+    // Set humidity series for chart
+    sensor.series.humidity.push({x: formattedTime, y: data.value.humidity});
+    // Set weight series for chart
+    sensor.series.weight.push({x: formattedTime, y: data.value.weight});
   }
 
   function sensorInfoCheck (sensor, callback) {
