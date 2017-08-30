@@ -22,6 +22,10 @@ var $currentViewScope;
 
 var App = require ('./app');
 window.app = new App ({
+  updateCharts: function(series) {
+    $currentViewScope.updateCharts (series);
+    $currentViewScope.$apply ();
+  },
   refresh: function () {
     $currentViewScope.$apply ();
   },
@@ -35,7 +39,7 @@ angular
       $currentViewScope = $scope;
       currentView = dashboardView;
       $.when (app.initialized).done (function () {
-        $scope.$evalAsync(function() {
+        $scope.$evalAsync (function() {
           dashboardView.init (app, $scope);
         });
       });

@@ -8,9 +8,17 @@
   </h3>
 
   <div class="row">
-    <div class="col-lg-8">
-        {{ sensor.readings }}
-        <div class="ct-chart ct-golden-section"></div>
+    <div class="col-lg-4">
+        <h4 class="col-lg-offset-1">Storage Temperature (F)</h4> 
+        <div id="chart-temperature" class="ct-chart ct-perfect-square"></div>
+    </div>
+    <div class="col-lg-4">
+        <h4 class="col-lg-offset-1">Inventory (lbs)</h4>
+        <div id="chart-weight" class="ct-chart ct-perfect-square"></div>
+    </div>
+    <div class="col-lg-4">
+        <h4 class="col-lg-offset-1">Storage Humidity (%)</h4>
+        <div id="chart-humidity" class="ct-chart ct-perfect-square"></div>
     </div>
   </div>
 

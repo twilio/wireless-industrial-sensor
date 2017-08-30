@@ -83,32 +83,30 @@ module.exports = function (callbacks) {
   function fetchReadings (sensor) {
     syncClient.map (SENSOR_DATA_READINGS).then (function (map) {
       map.get (SENSOR_DATA_MAP_NAME (sensor.id)).then (function (item) {
-        sensors[sensor.id].readingsMap = item;
-        sensors[sensor.id].readings = item.value;
-        updateSeries(sensors[sensor.id], item);
-        callbacks.refresh ();
+        let cSensor = sensors[sensor.id];
+        cSensor.readingsMap = item;
+        cSensor.readings = item.value;
+        updateSeries(cSensor, item);
+        callbacks.updateCharts (cSensor.series);
       });
       map.on ('itemUpdated', function (data) {
-        console.log(data);
-        sensors[sensor.id].readings = data.value;
-        updateSeries(sensors[sensor.id], data);
-        callbacks.refresh ();
+        let cSensor = sensors[sensor.id];
+        cSensor.readings = data.value;
+        updateSeries(cSensor, data);
+        callbacks.updateCharts (cSensor.series);
       });
     });
   }
 
   function updateSeries(sensor, data) {
     if (!sensor.series) sensor.series = { temperature: [], humidity: [], weight: [] };
+    
+    let now = new Date();
+    let weight = data.value.weight < 0 ? 0 : data.value.weight;
 
-    let utcTime = data.descriptor.date_updated || data.descriptor.date_created;
-    let formattedTime = moment.utc(utcTime).local().format("HH:mm");
-
-    // Set temperature series for chart
-    sensor.series.temperature.push({x: formattedTime, y: data.value.temperature});
-    // Set humidity series for chart
-    sensor.series.humidity.push({x: formattedTime, y: data.value.humidity});
-    // Set weight series for chart
-    sensor.series.weight.push({x: formattedTime, y: data.value.weight});
+    sensor.series.temperature.push({x: now, y: data.value.temperature});
+    sensor.series.humidity.push({x: now, y: data.value.humidity});
+    sensor.series.weight.push({x: now, y: weight});
   }
 
   function sensorInfoCheck (sensor, callback) {
