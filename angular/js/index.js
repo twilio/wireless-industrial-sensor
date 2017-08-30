@@ -24,7 +24,7 @@ var App = require ('./app');
 window.app = new App ({
   updateCharts: function(series) {
     window.app.series = series;
-    $currentViewScope.updateCharts (series);
+    $currentViewScope.updateCharts ();
     $currentViewScope.$apply ();
   },
   refresh: function () {

@@ -6,10 +6,10 @@ var dashboardView = {
   init: function (app, $scope) {
     $scope.sensors = app.sensors;
     $scope.noSensor = function () { return Object.keys(app.sensors).length === 0; }
-    $scope.updateCharts = function (series) {
-      $scope.temperatureChart.update({ series: [series.temperature] });
-      $scope.humidityChart.update({ series: [series.humidity] });
-      $scope.weightChart.update({ series: [series.weight] });
+    $scope.updateCharts = function () {
+      $scope.temperatureChart.update({ series: [app.series.temperature] });
+      $scope.humidityChart.update({ series: [app.series.humidity] });
+      $scope.weightChart.update({ series: [app.series.weight] });
     };
     $scope.initCharts = function() {
       let data = { series: [{name: 'ticks', data: []}] };
