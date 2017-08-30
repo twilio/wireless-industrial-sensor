@@ -7,7 +7,7 @@
     {{ sensor.info.name }}
   </h3>
 
-  <div class="row">
+  <div ng-init="initCharts()" class="row">
     <div class="col-lg-4">
         <h4 class="col-lg-offset-1">Storage Temperature (F)</h4> 
         <div id="chart-temperature" class="ct-chart ct-perfect-square"></div>

@@ -7,33 +7,31 @@ var dashboardView = {
     $scope.sensors = app.sensors;
     $scope.noSensor = function () { return Object.keys(app.sensors).length === 0; }
     $scope.updateCharts = function (series) {
-      if (!$scope.temperatureChart) initCharts ($scope);
-
       $scope.temperatureChart.update({ series: [series.temperature] });
       $scope.humidityChart.update({ series: [series.humidity] });
       $scope.weightChart.update({ series: [series.weight] });
     };
+    $scope.initCharts = function() {
+      let data = { series: [{name: 'ticks', data: []}] };
+      let options = {
+          width: 300,
+          height: 200,
+          axisX: {
+            type: Chartist.FixedScaleAxis,
+            divisor: 5,
+            labelInterpolationFnc: function(value) {
+              return moment(value).format('HH:mm');
+            }
+          }
+        };
+        $scope.temperatureChart = new Chartist.Line('#chart-temperature', data, options);
+        $scope.humidityChart = new Chartist.Line('#chart-humidity', data, options);
+        $scope.weightChart = new Chartist.Line('#chart-weight', data, options);
+        if (app.series !== undefined) {
+          $scope.updateCharts(app.series);
+        }
+    }
   }
 };
-
-function initCharts ($scope) {
-  let data = { series: [{name: 'ticks', data: []}] };
-
-  let options = {
-    width: 300,
-    height: 200,
-    axisX: {
-      type: Chartist.FixedScaleAxis,
-      divisor: 5,
-      labelInterpolationFnc: function(value) {
-        return moment(value).format('HH:mm');
-      }
-    }
-  };
-
-  $scope.temperatureChart = new Chartist.Line('#chart-temperature', data, options);
-  $scope.humidityChart = new Chartist.Line('#chart-humidity', data, options);
-  $scope.weightChart = new Chartist.Line('#chart-weight', data, options);
-}  
 
 module.exports = dashboardView;
