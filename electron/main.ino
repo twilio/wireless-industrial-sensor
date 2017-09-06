@@ -2,9 +2,6 @@
 #include <HX711ADC.h>
 #include "Si7020/Si7020.h"
 
-// We need to use the Twilio APN
-STARTUP(cellular_credentials_set("wireless.twilio.com", "", "", NULL));
-
 HX711ADC cells(C4, C5);
 Si7020 sensor;
 
@@ -12,9 +9,9 @@ Si7020 sensor;
 // https://learn.sparkfun.com/tutorials/load-cell-amplifier-hx711-breakout-hookup-guide
 float calibration_factor = 1500;
 
-const char * id = "One";
-const char * name = "MyIndustrialSensor";
-const char * token = "2TZNkmwiQcy8E5Jl";
+const char* id = "";
+const char* name = "";
+const char* token = "";
 
 void setup() {
   // Initialize our temperature sensor
@@ -44,7 +41,7 @@ void loop() {
   char data[200];
   sprintf(data, "{\"id\":\"%s\", \"name\":\"%s\", \"weight\": %d, \"humidity\": %f, \"temperature\": %f, \"token\": \"%s\"}", id, name, weight, rh, t, token);
 
-  Particle.publish("Industrial Sensor Measurement", data, PRIVATE);
+  Particle.publish("Industrial Sensor Reading", data, PRIVATE);
 
   // Put the ADC in sleep mode
   cells.power_down();
