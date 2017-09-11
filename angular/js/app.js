@@ -83,14 +83,14 @@ module.exports = function (callbacks) {
   function fetchReadings (sensor) {
     syncClient.map (SENSOR_DATA_READINGS).then (function (map) {
       map.get (SENSOR_DATA_MAP_NAME (sensor.id)).then (function (item) {
-        let cSensor = sensors[sensor.id];
+        var cSensor = sensors[sensor.id];
         cSensor.readingsMap = item;
         cSensor.readings = item.value;
         updateSeries(cSensor, item);
         callbacks.updateCharts (cSensor.series);
       });
       map.on ('itemUpdated', function (data) {
-        let cSensor = sensors[sensor.id];
+        var cSensor = sensors[sensor.id];
         cSensor.readings = data.value;
         updateSeries(cSensor, data);
         callbacks.updateCharts (cSensor.series);
@@ -101,8 +101,8 @@ module.exports = function (callbacks) {
   function updateSeries(sensor, data) {
     if (!sensor.series) sensor.series = { temperature: [], humidity: [], weight: [] };
     
-    let now = new Date();
-    let weight = data.value.weight < 0 ? 0 : data.value.weight;
+    var now = new Date();
+    var weight = data.value.weight < 0 ? 0 : data.value.weight;
 
     sensor.series.temperature.push({x: now, y: data.value.temperature});
     sensor.series.humidity.push({x: now, y: data.value.humidity});

@@ -1,9 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html ng-app="app">
+<html ng-app="app" ng-cloak>
   <head>
     <title>Twilio's Industrial Sensor Blueprint</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">    
   </head>
   <body>
 
@@ -27,14 +28,13 @@
 
     <div class="container container-content" ng-view></div>
 
-
-
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js"></script>
     <script src="https://media.twiliocdn.com/sdk/js/sync/v0.5/twilio-sync.js"></script>  
     <script src="/assets/vendor.js"></script>
     <script src="/assets/styles.js"></script>
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <script src="/assets/index.js"></script>
     <script type="text/javascript">
       app.init();

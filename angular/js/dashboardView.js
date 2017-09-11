@@ -12,8 +12,8 @@ var dashboardView = {
       $scope.weightChart.update({ series: [app.series.weight] });
     };
     $scope.initCharts = function() {
-      let data = { series: [{name: 'ticks', data: []}] };
-      let options = {
+      var data = { series: [{name: 'ticks', data: []}] };
+      var options = {
           width: 300,
           height: 200,
           axisX: {
