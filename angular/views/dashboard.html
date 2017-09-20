@@ -1,0 +1,25 @@
+<h1>Active Industrial Sensors</h1>
+
+<p ng-show="noSensor()">We aren't tracking any Industrial Sensors right now. Click the Add Industrial Sensor button to get started.</p>
+
+<div ng-repeat="sensor in sensors" class="jumbotron sensor sensor{{ sensor.info.id }} chalk-background">
+  <h3>
+    {{ sensor.info.name }}
+  </h3>
+
+  <div ng-init="initCharts()" class="row">
+    <div class="col-lg-4">
+        <h4 class="col-lg-offset-1">Storage Temperature (F)</h4> 
+        <div id="chart-temperature" class="ct-chart ct-perfect-square"></div>
+    </div>
+    <div class="col-lg-4">
+        <h4 class="col-lg-offset-1">Inventory (Oz)</h4>
+        <div id="chart-weight" class="ct-chart ct-perfect-square"></div>
+    </div>
+    <div class="col-lg-4">
+        <h4 class="col-lg-offset-1">Storage Humidity (%)</h4>
+        <div id="chart-humidity" class="ct-chart ct-perfect-square"></div>
+    </div>
+  </div>
+
+</div>
