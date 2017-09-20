@@ -8,7 +8,7 @@
 
 **Solution** We will create a Twilio-powered easy-to-deploy device to track and log relative humidity level, temperature, and weight. This project will be of interest to anyone who wants to remotely monitor inventory or environment.
 
-**Degree of Difficulty (1-5): 4** This example requires some basic electrical knowledge and the ability to solder, but otherwise the project is appropriate for a novice.
+**Degree of Difficulty (1-5): 2** This example requires some basic electrical knowledge but otherwise the project is appropriate for a novice.
 
 ### Other Applications
 You may not be running a coffee company, but this project will be of interest to anyone who wants to remotely monitor inventory or environment, from tracking the volume of water in a tank to the humidity in a warehouse.
@@ -19,6 +19,6 @@ Before we get started, here's a quick overview of what you'll need to build the 
 **Electronic Components** In order to build your own Industrial Sensor, you'll need the following items:
 
 * 1x [Twilio Programmable Wireless SIM](https://www.twilio.com/wireless)
-* 1x [Programmable Wireless Industrial Sensor shopping list](http://sfe.io/w140994)
+* 1x [Programmable Wireless Industrial Sensor shopping list](http://bit.ly/2wxubYC)
 
 That's it! As a reminder, full instructions for this tutorial can be found in the [Industrial Sensor Blueprint](https://www.twilio.com/wireless/blueprints/industrial-sensor/).
