@@ -9,8 +9,7 @@ function sensorAuth (sensors, sensor_id, sensor_token) {
 }
 
 exports.handler = function (context, event, callback) {
-  if (!event.data)
-    return callback (null, {success: false, error: 'no data defined in event'});
+  if (!event.data) return callback (null, {success: false, error: 'no data defined in event'});
   event.data = JSON.parse (event.data);
 
   let sensor = {
@@ -25,17 +24,17 @@ exports.handler = function (context, event, callback) {
   // Create a "grant" which enables a client to use Sync as a given user,
   // on a given device
   let syncGrant = new SyncGrant ({
-    serviceSid: context.SERVICE_SID,
+    serviceSid: context.INDUSTRIAL_SENSOR_SERVICE_SID,
   });
 
   // Create an access token which we will sign and return to the client,
   // containing the grant we just created
   let token = new AccessToken (
     context.ACCOUNT_SID,
-    context.API_KEY,
-    context.API_SECRET,
+    context.INDUSTRIAL_SENSOR_API_KEY,
+    context.INDUSTRIAL_SENSOR_API_SECRET,
     {
-      ttl: parseInt (context.TOKEN_TTL), // int and string are different for AccessToken
+      ttl: parseInt (context.INDUSTRIAL_SENSOR_TOKEN_TTL), // int and string are different for AccessToken
     }
   );
 
@@ -44,7 +43,7 @@ exports.handler = function (context, event, callback) {
 
   // Verify sensor token
   let client = context.getTwilioClient ();
-  let syncService = client.sync.services (context.SERVICE_SID);
+  let syncService = client.sync.services (context.INDUSTRIAL_SENSOR_SERVICE_SID);
 
   syncService
     .documents ('app.configuration')
