@@ -1,6 +1,9 @@
 #include <Si7020.h>
 #include <HX711ADC.h>
 #include "Si7020/Si7020.h"
+#include "cellular_hal.h"
+
+STARTUP(cellular_credentials_set("wireless.twilio.com", "", "", NULL));
 
 HX711ADC cells(C4, C5);
 Si7020 sensor;
